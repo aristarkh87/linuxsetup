@@ -1,0 +1,18 @@
+---
+- name: Create iptables.sh
+  become: yes
+  template: 
+    src: iptables.sh.j2
+    dest: "{{ iptables_script }}"
+    mode: 0755
+  notify: Run iptables script
+
+- name: Enable iptables units
+  become: yes
+  systemd: 
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - iptables
+    - ip6tables
+  when: ansible_pkg_mgr == "pacman"

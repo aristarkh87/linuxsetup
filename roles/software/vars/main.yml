@@ -1,0 +1,46 @@
+---
+apt_softlist:
+  common:
+    - mc
+    - sudo
+    - htop
+    - vlc
+    - iptables-persistent
+    - cifs-utils
+  kde:
+    - vpnc
+    - network-manager-vpnc
+    - krdc
+    - yakuake
+  gtk:
+    - vpnc
+    - network-manager-vpnc-gnome
+    - freerdp
+    - remmina
+    - remmina-plugin-rdp
+  note:
+    - tlp
+    - tlp-rdw
+    - powertop
+    - xbacklight
+
+pacman_softlist:
+  common:
+    - mc
+    - sudo
+    - htop
+    - vlc
+    - vpnc
+    - networkmanager-vpnc
+    - cifs-utils
+  kde:
+    - krdc
+    - yakuake
+  gtk:
+    - freerdp
+    - remmina
+  note:
+    - tlp
+    - tlp-rdw
+    - powertop
+    - xorg-xbacklight

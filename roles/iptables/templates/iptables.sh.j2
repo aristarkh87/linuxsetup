@@ -1,0 +1,44 @@
+#!/bin/bash
+
+iptables=/sbin/iptables
+ip6tables=/sbin/ip6tables
+localnet4={{ localnet4 }}
+localnet6={{ localnet6 }}
+
+# Flush rules
+${iptables} -F
+${ip6tables} -F
+
+# Default rules
+${iptables} -P INPUT DROP
+${iptables} -P OUTPUT ACCEPT
+${iptables} -P FORWARD DROP
+${ip6tables} -P INPUT DROP
+${ip6tables} -P OUTPUT ACCEPT
+${ip6tables} -P FORWARD DROP
+
+# General input rules
+${iptables} -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+${ip6tables} -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+${iptables} -A INPUT -i lo -j ACCEPT
+${ip6tables} -A INPUT -i lo -j ACCEPT
+${iptables} -A INPUT -p icmp -j ACCEPT
+${ip6tables} -A INPUT -p ipv6-icmp -j ACCEPT
+
+# Allow multicast
+${iptables} -A INPUT -d 239.0.0.0/8 -j ACCEPT
+${ip6tables} -A INPUT -d ff00::/8 -j ACCEPT
+
+# Allow INPUT for samba
+${iptables} -A INPUT -s ${localnet4} -p udp -m multiport --ports 137,138 -j ACCEPT
+${ip6tables} -A INPUT -s ${localnet6} -p udp -m multiport --ports 137,138 -j ACCEPT
+${iptables} -A INPUT -s ${localnet4} -p tcp -m multiport --dports 139,445 -j ACCEPT
+${ip6tables} -A INPUT -s ${localnet6} -p tcp -m multiport --dports 139,445 -j ACCEPT
+
+# Allow SSH
+${iptables} -A INPUT -s ${localnet4} -p tcp --dport 22 -j ACCEPT
+${ip6tables} -A INPUT -s ${localnet6} -p tcp --dport 22 -j ACCEPT
+
+# Save rules
+${iptables}-save > {{ iptables_rules }}
+${ip6tables}-save > {{ ip6tables_rules }}

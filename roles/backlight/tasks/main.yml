@@ -1,0 +1,8 @@
+---
+- name: Create xbacklight script
+  become: yes
+  template: 
+    src: "backlight-{{ ansible_pkg_mgr }}.j2"
+    dest: "{{ backlight_file }}"
+    mode: 0755
+  notify: Apply backlight

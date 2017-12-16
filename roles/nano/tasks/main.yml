@@ -1,0 +1,12 @@
+---
+- name: Enable includes for syntax highlight
+  become: yes
+  replace:
+    path: /etc/nanorc
+    regexp: '^# include (.*)$'
+    replace: 'include \1'
+
+- name: Create nano config
+  copy:
+    src: nanorc
+    dest: "{{ ansible_user_dir }}/.nanorc"

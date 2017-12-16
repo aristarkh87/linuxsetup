@@ -1,0 +1,8 @@
+---
+iptables_script: "/etc/iptables/iptables.sh"
+iptables_rules: "{{ '/etc/iptables/rules.v4' if ansible_pkg_mgr == 'apt' else
+                    '/etc/iptables/iptables.rules' if ansible_pkg_mgr == 'pacman'}}"
+ip6tables_rules: "{{ '/etc/iptables/rules.v6' if ansible_pkg_mgr == 'apt' else
+                    '/etc/iptables/ip6tables.rules' if ansible_pkg_mgr == 'pacman'}}"
+localnet4: "192.168.10.0/24"
+localnet6: "2a02:17d0:1b0:d700::/64"

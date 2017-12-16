@@ -1,0 +1,27 @@
+---
+- name: Enable savedefault
+  become: yes
+  lineinfile:
+    path: /etc/default/grub
+    state: present
+    regexp: '^.*GRUB_SAVEDEFAULT.*$'
+    line: 'GRUB_SAVEDEFAULT=true'
+  notify: Update grub config
+
+- name: Enable grub_default saved
+  become: yes
+  lineinfile:
+    path: /etc/default/grub
+    state: present
+    regexp: '^.*GRUB_DEFAULT=.*$'
+    line: 'GRUB_DEFAULT=saved'
+  notify: Update grub config
+
+- name: Set options for grub
+  become: yes
+  lineinfile:
+    path: /etc/default/grub
+    state: present
+    regexp: '^.*GRUB_CMDLINE_LINUX_DEFAULT=.*$'
+    line: 'GRUB_CMDLINE_LINUX_DEFAULT="{{ grub_options }}"'
+  notify: Update grub config

@@ -1,0 +1,23 @@
+---
+- name: Install general software
+  become: yes
+  pacman: name={{ item }} update_cache=yes
+  with_items: "{{ pacman_softlist.common }}"
+
+- name: Install software for KDE
+  become: yes
+  pacman: name={{ item }}
+  with_items: "{{ pacman_softlist.kde }}"
+  when: ansible_env.XDG_CURRENT_DESKTOP == "KDE"
+
+- name: Install software for GNOME
+  become: yes
+  pacman: name={{ item }}
+  with_items: "{{ pacman_softlist.gtk }}"
+  when: ansible_env.XDG_CURRENT_DESKTOP != "KDE"
+
+- name: Install software for notebook
+  become: yes
+  pacman: name={{ item }}
+  with_items: "{{ pacman_softlist.note }}"
+  when: ansible_form_factor == "Notebook"

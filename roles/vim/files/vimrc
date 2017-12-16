@@ -1,0 +1,27 @@
+syntax on
+
+set nocompatible
+set encoding=utf-8
+set termencoding=utf-8
+set fileencodings=utf-8,cp1251,koi8-r,cp866
+
+set title
+set laststatus=2
+set statusline=%t\ %h%w%m%r[%{&ff},%{strlen(&fenc)?&fenc:'none'}]%y%=%-14.(%c,%l/%L%)\ %P
+set wildmenu
+set showcmd
+
+set wrap
+set linebreak
+set showmatch
+set incsearch
+set autoread
+set listchars=eol:$,tab:>-,trail:.
+
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+set autoindent
+set smartindent
+set pastetoggle=<F2>

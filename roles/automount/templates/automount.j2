@@ -1,0 +1,10 @@
+[Unit]
+Description=Automount {{ item }} folder
+After=remote-fs.target
+
+[Automount]
+Where={{ mount_directory }}/{{ item }}
+TimeoutIdleSec=30
+
+[Install]
+WantedBy=remote-fs.target

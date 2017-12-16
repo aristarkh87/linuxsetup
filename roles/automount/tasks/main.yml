@@ -1,0 +1,34 @@
+---
+- name: Create secret file
+  template: 
+    src: "secret.j2"
+    dest: "{{ secret_file }}"
+    mode: 0600
+
+- name: Create directories for mounts
+  become: yes
+  file:
+    path: "{{ mount_directory }}/{{ item }}"
+    state: directory
+  with_items: "{{ shares }}"
+
+- name: Create mount units
+  become: yes
+  template: 
+    src: "mount.j2"
+    dest: "/etc/systemd/system/{{ mount_directory | basename }}-{{ item }}.mount"
+  with_items: "{{ shares }}"
+
+- name: Create automount units
+  become: yes
+  template: 
+    src: "automount.j2"
+    dest: "/etc/systemd/system/{{ mount_directory | basename }}-{{ item }}.automount"
+  with_items: "{{ shares }}"
+  notify: Start mounts
+
+- name: Create symlinks to mount dir
+  file:
+    src: "{{ mount_directory }}"
+    dest: "{{ ansible_user_dir }}"
+    state: link

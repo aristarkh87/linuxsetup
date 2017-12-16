@@ -1,0 +1,9 @@
+---
+- name: Start mounts
+  become: yes
+  systemd: 
+    name: "{{ mount_directory | basename }}-{{ item }}.automount"
+    daemon_reload: yes
+    enabled: yes
+    state: started
+  with_items: "{{ shares }}"
