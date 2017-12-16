@@ -26,7 +26,7 @@
     src: "automount.j2"
     dest: "/etc/systemd/system/{{ mount_directory | basename }}-{{ item }}.automount"
   with_items: "{{ shares }}"
-  notify: Start mounts
+  notify: Restart mounts
 
 - name: Create symlinks to mount dir
   file:
