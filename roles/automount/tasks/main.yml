@@ -30,5 +30,5 @@
 - name: Create symlinks to mount dir
   file:
     src: "{{ mount_directory }}"
-    dest: "{{ ansible_user_dir }}"
+    dest: "{{ ansible_user_dir }}/{{ mount_directory | basename }}"
     state: link
