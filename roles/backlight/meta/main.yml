@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: install_package, packages: [ 'xbacklight' ], when: ansible_pkg_mgr == 'apt' }
+  - { role: install_package, packages: [ 'xorg-xbacklight' ], when: ansible_pkg_mgr == 'pacman' }
