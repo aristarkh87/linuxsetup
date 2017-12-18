@@ -4,7 +4,7 @@
     src: "secret.j2"
     dest: "{{ secret_file }}"
     mode: 0600
-  when: password is defined
+  when: nas_password != ''
 
 - name: Create directories for mounts
   become: yes
