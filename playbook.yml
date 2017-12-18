@@ -1,5 +1,4 @@
 ---
-# http://docs.ansible.com/ansible/latest/list_of_all_modules.html
 - hosts: localhost
   connection: local
   vars_prompt:
@@ -10,11 +9,10 @@
       prompt: "Enter password for NAS"
       private: yes
   roles:
-    - software
-    - iptables
-    - automount
-    - nano
-    - vim
-    - grub
-    - { role: backlight, when: ansible_form_factor == "Notebook" }
-
+    - { role: software, tags: [ 'software' ] }
+    - { role: iptables, tags: [ 'iptables'  ]}
+    - { role: automount, tags: [ 'automount' ] }
+    - { role: nano, tags: [ 'nano' ] }
+    - { role: vim, tags: [ 'vim' ] }
+    - { role: grub, tags: [ 'grub' ] }
+    - { role: backlight, tags: [ 'backlight' ], when: ansible_form_factor == "Notebook" }
