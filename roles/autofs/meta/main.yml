@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: install_package, packages: [ 'autofs', 'cifs-utils' ] }

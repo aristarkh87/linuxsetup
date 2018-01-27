@@ -1,0 +1,37 @@
+---
+- name: Create secret file
+  template: 
+    src: "secret.j2"
+    dest: "{{ secret_file }}"
+    mode: 0600
+  when: nas_password != ''
+
+- name: Create directory for mounts
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ mount_directory }}"
+    - "{{ autofs_dir }}/auto.master.d"
+
+- name: Create autofs map
+  become: yes
+  template: 
+    src: "auto.map.j2"
+    dest: "{{ autofs_dir }}/auto.storage"
+  with_items: "{{ shares }}"
+
+- name: Create autofs autofs.master
+  become: yes
+  template: 
+    src: "auto.master.j2"
+    dest: "{{ autofs_dir }}/auto.master.d/{{ nas_name }}.autofs"
+    mode: 0600
+  notify: Restart autofs
+
+- name: Create symlinks to mount dir
+  file:
+    src: "{{ mount_directory }}"
+    dest: "{{ ansible_user_dir }}/{{ mount_directory | basename }}"
+    state: link

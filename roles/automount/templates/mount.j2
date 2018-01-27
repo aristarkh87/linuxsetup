@@ -6,4 +6,4 @@ After=remote-fs.target
 What=//{{ nas_fqdn }}/{{ item }}
 Where={{ mount_directory }}/{{ item }}
 Type=cifs
-Options=_netdev,vers=3.0,credentials={{ secret_file }},uid={{ ansible_user_gid }},iocharset=utf8
+Options=_netdev,vers=3.0,credentials={{ secret_file }},uid={{ ansible_user_uid }},gid={{ ansible_user_gid }},iocharset=utf8

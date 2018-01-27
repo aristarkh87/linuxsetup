@@ -11,7 +11,7 @@
   roles:
     - { role: software, tags: [ 'software' ] }
     - { role: iptables, tags: [ 'iptables'  ]}
-    - { role: automount, tags: [ 'automount' ] }
+    - { role: autofs, tags: [ 'autofs' ] }
     - { role: nano, tags: [ 'nano' ] }
     - { role: vim, tags: [ 'vim' ] }
     - { role: grub, tags: [ 'grub' ] }
