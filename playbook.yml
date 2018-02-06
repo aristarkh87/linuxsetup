@@ -10,7 +10,7 @@
       private: yes
   roles:
     - { role: software, tags: [ 'software' ] }
-    - { role: iptables, tags: [ 'iptables'  ]}
+    - { role: iptables, tags: [ 'iptables' ] }
     - { role: autofs, tags: [ 'autofs' ] }
     - { role: nano, tags: [ 'nano' ] }
     - { role: vim, tags: [ 'vim' ] }

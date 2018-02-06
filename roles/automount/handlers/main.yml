@@ -1,5 +1,5 @@
 ---
-- name: Restart mounts
+- name: Restart automounts
   become: yes
   systemd: 
     name: "{{ mount_directory | basename }}-{{ item }}.automount"
