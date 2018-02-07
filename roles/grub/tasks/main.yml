@@ -16,12 +16,3 @@
     regexp: '^[# ]*GRUB_SAVEDEFAULT=.*$'
     line: 'GRUB_DEFAULT=saved'
   notify: Update grub config
-
-- name: Set options for grub
-  become: yes
-  lineinfile:
-    path: /etc/default/grub
-    state: present
-    regexp: '^[# ]*GRUB_CMDLINE_LINUX_DEFAULT=.*$'
-    line: 'GRUB_CMDLINE_LINUX_DEFAULT="{{ grub_options }}"'
-  notify: Update grub config
