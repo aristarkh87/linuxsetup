@@ -5,7 +5,7 @@
     path: /etc/default/grub
     state: present
     regexp: '^[# ]*GRUB_SAVEDEFAULT=.*$'
-    line: 'GRUB_SAVEDEFAULT=true'
+    line: 'GRUB_SAVEDEFAULT="true"'
   notify: Update grub config
 
 - name: Set grub_default=saved
@@ -13,6 +13,6 @@
   lineinfile:
     path: /etc/default/grub
     state: present
-    regexp: '^[# ]*GRUB_SAVEDEFAULT=.*$'
-    line: 'GRUB_DEFAULT=saved'
+    regexp: '^[# ]*GRUB_DEFAULT=.*$'
+    line: 'GRUB_DEFAULT="saved"'
   notify: Update grub config
