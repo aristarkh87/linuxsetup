@@ -15,9 +15,9 @@
        pip install ansible
 2. Download and run playbook:
 
-        git clone https://github.com/aristarkh87/linuxsetup.git
-        cd linuxsetup
-        ./setup.sh <parameters>
+       git clone https://github.com/aristarkh87/linuxsetup.git
+       cd linuxsetup
+       ./setup.sh <parameters>
    for example:
 
        ./setup.sh --tags iptables
