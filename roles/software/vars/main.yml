@@ -5,6 +5,7 @@ apt_softlist:
     - sudo
     - htop
     - vlc
+    - freerdp
   kde:
     - vpnc
     - network-manager-vpnc
@@ -13,7 +14,6 @@ apt_softlist:
   gtk:
     - vpnc
     - network-manager-vpnc-gnome
-    - freerdp
     - remmina
     - remmina-plugin-rdp
   note:
@@ -29,11 +29,11 @@ pacman_softlist:
     - vlc
     - vpnc
     - networkmanager-vpnc
+    - freerdp
   kde:
     - krdc
     - yakuake
   gtk:
-    - freerdp
     - remmina
   note:
     - tlp

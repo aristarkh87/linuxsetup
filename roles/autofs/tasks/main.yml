@@ -29,9 +29,3 @@
     dest: "{{ autofs_dir }}/auto.master.d/{{ nas_name }}.autofs"
     mode: 0600
   notify: Restart autofs
-
-- name: Create symlinks to mount dir
-  file:
-    src: "{{ mount_directory }}"
-    dest: "{{ ansible_user_dir }}/{{ mount_directory | basename }}"
-    state: link
