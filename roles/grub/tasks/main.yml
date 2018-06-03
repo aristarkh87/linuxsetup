@@ -6,7 +6,6 @@
     state: present
     regexp: '^[# ]*GRUB_SAVEDEFAULT=.*$'
     line: 'GRUB_SAVEDEFAULT="true"'
-  notify: Update grub config
 
 - name: Set grub_default=saved
   become: yes
@@ -15,4 +14,7 @@
     state: present
     regexp: '^[# ]*GRUB_DEFAULT=.*$'
     line: 'GRUB_DEFAULT="saved"'
-  notify: Update grub config
+
+- name: Update grub config
+  become: yes
+  command: grub-mkconfig -o /boot/grub/grub.cfg

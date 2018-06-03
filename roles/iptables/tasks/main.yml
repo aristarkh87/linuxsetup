@@ -5,7 +5,10 @@
     src: iptables.sh.j2
     dest: "{{ iptables_script }}"
     mode: 0755
-  notify: Run iptables script
+
+- name: Run iptables script
+  become: yes
+  command: bash /etc/iptables/iptables.sh
 
 - name: Enable iptables units
   become: yes

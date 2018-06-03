@@ -1,4 +1,0 @@
----
-- name: Apply backlight
-  become: yes
-  shell: bash {{ backlight_file }}

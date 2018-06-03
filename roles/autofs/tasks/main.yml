@@ -28,4 +28,11 @@
     src: "auto.master.j2"
     dest: "{{ autofs_dir }}/auto.master.d/{{ nas_name }}.autofs"
     mode: 0600
-  notify: Restart autofs
+
+- name: Restart autofs
+  become: yes
+  systemd: 
+    name: "autofs"
+    daemon_reload: yes
+    enabled: yes
+    state: restarted

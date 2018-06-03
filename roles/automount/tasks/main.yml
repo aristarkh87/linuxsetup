@@ -26,7 +26,15 @@
     src: "automount.j2"
     dest: "/etc/systemd/system/{{ mount_directory | basename }}-{{ item }}.automount"
   with_items: "{{ shares }}"
-  notify: Restart mounts
+
+- name: Restart automount units
+  become: yes
+  systemd: 
+    name: "{{ mount_directory | basename }}-{{ item }}.automount"
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+  with_items: "{{ shares }}"
 
 - name: Create symlinks to mount dir
   file:
