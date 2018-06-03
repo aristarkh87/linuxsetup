@@ -40,4 +40,6 @@
   file:
     src: "{{ mount_directory }}"
     dest: "{{ ansible_user_dir }}/{{ mount_directory | basename }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: link
