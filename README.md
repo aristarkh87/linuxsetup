@@ -37,7 +37,7 @@
 ## Tags
 * software
 * iptables
-* autofs
+* automount
 * nano
 * vim
 * grub
